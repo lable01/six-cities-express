@@ -11,9 +11,9 @@ export class HelpCommand implements Command {
         Пример:
             cli.js --<command> [--arguments]
         Команды:
-            --version:
-            --help:
-            --import <path>:
+            --version
+            --help
+            --import <path>
             --generate <n> <path> <url>
     `);
   }

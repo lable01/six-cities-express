@@ -1,4 +1,4 @@
-export const enum Goods {
+export enum Goods {
   breakfast = 'Breakfast',
   airConditioning = 'Air conditioning',
   laptop = 'Laptop friendly workspace',

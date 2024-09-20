@@ -1,4 +1,4 @@
-export const enum HousingType {
+export enum HousingType {
   apartment = 'apartment',
   house = 'house',
   room = 'room',

@@ -1,6 +1,6 @@
-import { Command } from './command.interface.js';
+import { Command } from '../../shared/interface/index.js';
 
-export class ImportCommand implements Command {
+export class Import implements Command {
   public getName(): string {
     return '--import';
   }

@@ -1,4 +1,4 @@
-export const enum CityName {
+export enum CityName {
   Paris = 'Paris',
   Cologne = 'Cologne',
   Brussels = 'Brussels',

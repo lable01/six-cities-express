@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
 import { FileReader } from '../interface/index.js';
-import { OfferData } from '../types/index.js';
+import { OfferData, UserData } from '../types/index.js';
 import { CityName, Goods, HousingType } from '../enum/index.js';
-import { Location } from '../types/location.js';
+import { LocationData } from '../types/location.js';
 
 export class TSVFileReader implements FileReader {
   private rawData = '';
@@ -40,6 +40,12 @@ export class TSVFileReader implements FileReader {
       maxAdults,
       price,
       goods,
+      name,
+      email,
+      avatarUrl,
+      password,
+      typeUser,
+      numberComments,
     ] = line.split('\t');
 
     return {
@@ -60,10 +66,12 @@ export class TSVFileReader implements FileReader {
       maxAdults: this.parseInt(maxAdults),
       price: this.parseInt(price),
       goods: this.parseGoods(goods),
+      user: this.parseUser(name, email, avatarUrl, password, typeUser),
+      numberComments: this.parseInt(numberComments),
     };
   }
 
-  private parseLocation(latitude: string, longitude: string): Location {
+  private parseLocation(latitude: string, longitude: string): LocationData {
     return { latitude: parseFloat(latitude), longitude: parseFloat(longitude) };
   }
 
@@ -88,6 +96,22 @@ export class TSVFileReader implements FileReader {
 
   private parseInt(intString: string): number {
     return Number.parseInt(intString, 10);
+  }
+
+  private parseUser(
+    name: string,
+    email: string,
+    avatarUrl: string,
+    password: string,
+    typeUser: string,
+  ): UserData {
+    return {
+      name,
+      email,
+      avatarUrl,
+      password,
+      typeUser,
+    };
   }
 
   public read(): void {

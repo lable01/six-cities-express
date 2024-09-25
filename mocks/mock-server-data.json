@@ -1,0 +1,50 @@
+{
+  "api": {
+    "titles": [
+      "Perfectly located Castro",
+      "Loft Studio in the Central Area",
+      "House in countryside",
+      "Amazing and Extremely Central Flat",
+      "Wood and stone place"
+    ],
+    "description": [
+      "A quiet cozy and picturesque that hides behind a a river by the unique lightness of Amsterdam.",
+      "Design interior in most sympathetic area! Complitely renovated, well-equipped, cosy studio in idyllic, over 100 years old wooden house. Calm street, fast connection to center and airport.",
+      "Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance.",
+      "Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.",
+      "Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance."
+    ],
+    "date": [
+      "2024-08-17",
+      "2024-08-25",
+      "2024-09-11",
+      "2024-09-12",
+      "2024-09-20"
+    ],
+    "name": [
+      "Paris",
+      "Cologne",
+      "Brussels",
+      "Amsterdam",
+      "Hamburg",
+      "Dusseldorf"
+    ],
+    "latitude": [
+      "48.85661",
+      "50.938361",
+      "50.846557",
+      "52.370216",
+      "53.550341",
+      "51.225402"
+    ],
+    "longitude": [
+      "2.351499",
+      "6.959974",
+      "4.351697",
+      "4.895168",
+      "10.000654",
+      "6.776314"
+    ]
+
+  }
+}

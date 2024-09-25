@@ -1,8 +1,8 @@
 import { readFileSync } from 'node:fs';
-import { FileReader } from '../interface/index.js';
-import { OfferData, UserData } from '../types/index.js';
-import { CityName, Goods, HousingType } from '../enum/index.js';
-import { LocationData } from '../types/location.js';
+import { FileReader } from '../../interface/index.js';
+import { OfferData, UserData } from '../../types/index.js';
+import { CityName, Goods, HousingType } from '../../enum/index.js';
+import { LocationData } from '../../types/location.js';
 
 export class TSVFileReader implements FileReader {
   private rawData = '';
@@ -47,6 +47,8 @@ export class TSVFileReader implements FileReader {
       typeUser,
       numberComments,
     ] = line.split('\t');
+
+    console.log(numberComments);
 
     return {
       title,

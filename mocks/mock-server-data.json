@@ -14,37 +14,6 @@
       "Discover daily local life in city center, friendly neighborhood, clandestine casino, karaoke, old-style artisans, art gallery and artist studio downstairs.",
       "Peaceful studio in the most wanted area in town. Quiet house Near of everything. Completely renovated. Lovely neighbourhood, lot of trendy shops, restaurants and bars in a walking distance."
     ],
-    "date": [
-      "2024-08-17",
-      "2024-08-25",
-      "2024-09-11",
-      "2024-09-12",
-      "2024-09-20"
-    ],
-    "nameCity": [
-      "Paris",
-      "Cologne",
-      "Brussels",
-      "Amsterdam",
-      "Hamburg",
-      "Dusseldorf"
-    ],
-    "latitude": [
-      "48.85661",
-      "50.938361",
-      "50.846557",
-      "52.370216",
-      "53.550341",
-      "51.225402"
-    ],
-    "longitude": [
-      "2.351499",
-      "6.959974",
-      "4.351697",
-      "4.895168",
-      "10.000654",
-      "6.776314"
-    ],
     "previewImage": [
       "https://16.design.htmlacademy.pro/static/hotel/10.jpg",
       "https://16.design.htmlacademy.pro/static/hotel/2.jpg",
@@ -66,69 +35,6 @@
       "https://16.design.htmlacademy.pro/static/hotel/11.jpg",
       "https://16.design.htmlacademy.pro/static/hotel/12.jpg",
       "https://16.design.htmlacademy.pro/static/hotel/13.jpg"
-    ],
-    "isPremium": [
-      "true",
-      "false"
-    ],
-    "isFavorite": [
-      "true",
-      "false"
-    ],
-    "rating": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5"
-    ],
-    "type": [
-      "apartment",
-      "house",
-      "room",
-      "hotel"
-    ],
-    "numberRoom": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8"
-    ],
-    "maxAdult": [
-      "1",
-      "2",
-      "3",
-      "4",
-      "5",
-      "6",
-      "7",
-      "8",
-      "9",
-      "10"
-    ],
-    "price": [
-      "1000",
-      "2000",
-      "3000",
-      "4000",
-      "5000",
-      "6000",
-      "7000",
-      "8000",
-      "9000"
-    ],
-    "good": [
-      "Breakfast",
-      "Air conditioning",
-      "Laptop friendly workspace",
-      "Baby seat",
-      "Washer",
-      "Towels",
-      "Fridge"
     ],
     "nameUser": [
       "Vanya",
@@ -154,10 +60,6 @@
       "123456",
       "123457",
       "123458"
-    ],
-    "typeUser": [
-      "обычный",
-      "pro"
     ]
   }
 }

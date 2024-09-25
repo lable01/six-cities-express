@@ -1,5 +1,5 @@
 import { Command } from '../../shared/interface/index.js';
-import { TSVFileReader } from '../../shared/libs/index.js';
+import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
 
 export class Import implements Command {
   public getName(): string {

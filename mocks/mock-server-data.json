@@ -1,6 +1,6 @@
 {
   "api": {
-    "titles": [
+    "title": [
       "Perfectly located Castro",
       "Loft Studio in the Central Area",
       "House in countryside",
@@ -21,7 +21,7 @@
       "2024-09-12",
       "2024-09-20"
     ],
-    "name": [
+    "nameCity": [
       "Paris",
       "Cologne",
       "Brussels",
@@ -44,7 +44,120 @@
       "4.895168",
       "10.000654",
       "6.776314"
+    ],
+    "previewImage": [
+      "https://16.design.htmlacademy.pro/static/hotel/10.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/2.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/1.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/3.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/4.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/5.jpg"
+    ],
+    "image": [
+      "https://16.design.htmlacademy.pro/static/hotel/1.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/2.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/3.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/4.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/5.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/6.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/7.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/8.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/9.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/11.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/12.jpg",
+      "https://16.design.htmlacademy.pro/static/hotel/13.jpg"
+    ],
+    "isPremium": [
+      "true",
+      "false"
+    ],
+    "isFavorite": [
+      "true",
+      "false"
+    ],
+    "rating": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "type": [
+      "apartment",
+      "house",
+      "room",
+      "hotel"
+    ],
+    "numberRoom": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8"
+    ],
+    "maxAdult": [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5",
+      "6",
+      "7",
+      "8",
+      "9",
+      "10"
+    ],
+    "price": [
+      "1000",
+      "2000",
+      "3000",
+      "4000",
+      "5000",
+      "6000",
+      "7000",
+      "8000",
+      "9000"
+    ],
+    "good": [
+      "Breakfast",
+      "Air conditioning",
+      "Laptop friendly workspace",
+      "Baby seat",
+      "Washer",
+      "Towels",
+      "Fridge"
+    ],
+    "nameUser": [
+      "Vanya",
+      "Manya",
+      "Petya",
+      "Marina"
+    ],
+    "email": [
+      "snow@pisem.local",
+      "president@dka.local",
+      "fish@big.local",
+      "test@pisem.local",
+      "freedom@pisem.local",
+      "rolan@pochta.local",
+      "author@mir.local",
+      "test@lost.loca",
+      "kujo-fan@story.local"
+    ],
+    "avatarUrl": [
+      "https://16.design.htmlacademy.pro/static/host/avatar-angelina.jpg"
+    ],
+    "password": [
+      "123456",
+      "123457",
+      "123458"
+    ],
+    "typeUser": [
+      "обычный",
+      "pro"
     ]
-
   }
 }

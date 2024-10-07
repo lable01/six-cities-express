@@ -15,10 +15,12 @@ import {
 } from '../../enum/index.js';
 import {
   MAX_ADULTS,
+  MAX_COMMENTS,
   MAX_NUMBER_ROOM,
   MAX_PRICE,
   MAX_RATING,
   MIN_ADULTS,
+  MIN_COMMENTS,
   MIN_NUMBER_ROOM,
   MIN_PRICE,
   MIN_RATING,
@@ -62,10 +64,14 @@ export class TSVOfferGenerator implements OfferGenerator {
     const avatarUrl = getRandomItem<string>(this.mockData.avatarUrl);
     const password = getRandomItem<string>(this.mockData.password);
     const typeUser = this.generateTypeUser();
+    const numberComments = Math.round(
+      generateRandomValue(MIN_COMMENTS, MAX_COMMENTS),
+    ).toString();
 
     return [
       title,
       description,
+      date,
       cityName,
       latitude,
       longitude,
@@ -84,7 +90,7 @@ export class TSVOfferGenerator implements OfferGenerator {
       avatarUrl,
       password,
       typeUser,
-      date,
+      numberComments,
     ].join('\t');
   }
 
@@ -98,7 +104,7 @@ export class TSVOfferGenerator implements OfferGenerator {
     return this.type;
   }
 
-  private generateGoods(): Goods[] {
+  private generateGoods(): Goods[] | [] {
     this.goods = getRandomItems<Goods>(Object.values(Goods));
     return this.goods;
   }

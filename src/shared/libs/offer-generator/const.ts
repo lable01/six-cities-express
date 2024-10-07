@@ -6,3 +6,5 @@ export const MIN_ADULTS = 1;
 export const MAX_ADULTS = 10;
 export const MIN_PRICE = 7000;
 export const MAX_PRICE = 9000;
+export const MIN_COMMENTS = 1;
+export const MAX_COMMENTS = 5;

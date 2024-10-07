@@ -3,4 +3,5 @@ export {
   getRandomItems,
   getRandomItem,
   getRandomBoolean,
+  getErrorMessage,
 } from './common.js';

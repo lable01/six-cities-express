@@ -1,1 +1,1 @@
-export { PinoLogger } from './pino-loger.js';
+export { PinoLogger } from './pino-logger.js';

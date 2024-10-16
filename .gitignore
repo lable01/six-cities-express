@@ -4,8 +4,10 @@
 /lib/
 /dist/
 /docs/
+/logs/
 .idea/*
 
 .DS_Store
 coverage
 *.log
+.env

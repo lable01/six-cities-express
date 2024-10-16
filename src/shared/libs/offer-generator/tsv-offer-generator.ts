@@ -1,5 +1,5 @@
 import { OfferGenerator } from '../../interface/index.js';
-import { MockServerData } from '../../types/mock-server-data.js';
+import { MockServerData } from '../../types/index.js';
 import {
   generateRandomValue,
   getRandomBoolean,

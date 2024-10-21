@@ -1,3 +1,11 @@
+import { ValueMockCoordinates } from './const.js';
+
+export function generateRandomValueCoordinates() {
+  return (
+    +(Math.random() * ValueMockCoordinates.Value).toFixed(0) *
+    ValueMockCoordinates.CoordinatesOffer
+  );
+}
 export function generateRandomValue(
   min: number,
   max: number,

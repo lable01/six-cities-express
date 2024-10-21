@@ -1,6 +1,7 @@
 import { Goods, HousingType } from '../enum/index.js';
 import { UserData } from './user.js';
 import { CityData } from './city.js';
+import { LocationData } from './location.js';
 
 export type OfferData = {
   title: string;
@@ -19,4 +20,5 @@ export type OfferData = {
   goods: Goods[];
   user: UserData;
   numberComments: number;
+  location: LocationData;
 };

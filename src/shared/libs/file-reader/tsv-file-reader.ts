@@ -1,9 +1,9 @@
 import { FileReader } from '../../interface/index.js';
-import { OfferData, UserData } from '../../types/index.js';
+import { CityData, OfferData, UserData } from '../../types/index.js';
 import { CityName, Goods, HousingType } from '../../enum/index.js';
-import { LocationData } from '../../types/location.js';
 import EventEmitter from 'node:events';
 import { createReadStream } from 'node:fs';
+import { LocationData } from '../../types/location.js';
 
 export class TSVFileReader extends EventEmitter implements FileReader {
   private CHUNK_SIZE = 16384; // 16KB
@@ -18,8 +18,8 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       description,
       date,
       city,
-      latitude,
-      longitude,
+      latitudeCity,
+      longitudeCity,
       previewImage,
       images,
       isPremium,
@@ -35,6 +35,8 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       avatarUrl,
       typeUser,
       numberComments,
+      latitudeOffer,
+      longitudeOffer,
     ] = line.split('\t');
 
     console.log(numberComments);
@@ -43,10 +45,7 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       title,
       description,
       date: new Date(date),
-      city: {
-        name: city as CityName,
-        location: this.parseLocation(latitude, longitude),
-      },
+      city: this.parseLocation(city as CityName, latitudeCity, longitudeCity),
       previewImage: previewImage,
       images: this.parseArrayString(images),
       isPremium: this.parseBoolean(isPremium),
@@ -59,11 +58,22 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       goods: this.parseGoods(goods),
       user: this.parseUser(name, email, avatarUrl, typeUser),
       numberComments: this.parseInt(numberComments),
+      location: this.parseLocationOffer(latitudeOffer, longitudeOffer),
     };
   }
 
-  private parseLocation(latitude: string, longitude: string): LocationData {
-    return { latitude: parseFloat(latitude), longitude: parseFloat(longitude) };
+  private parseLocation(
+    city: CityName,
+    latitude: string,
+    longitude: string,
+  ): CityData {
+    return {
+      name: city,
+      location: {
+        latitude: Number.parseInt(latitude, 10),
+        longitude: Number.parseInt(longitude, 10),
+      },
+    };
   }
 
   private parseArrayString(arrayString: string): string[] {
@@ -104,6 +114,16 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       email,
       avatarUrl,
       typeUser,
+    };
+  }
+
+  private parseLocationOffer(
+    latitudeOffer: string,
+    longitudeOffer: string,
+  ): LocationData {
+    return {
+      latitude: Number.parseInt(latitudeOffer, 10),
+      longitude: Number.parseInt(longitudeOffer, 10),
     };
   }
 

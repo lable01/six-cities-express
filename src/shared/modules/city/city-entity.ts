@@ -20,10 +20,10 @@ export interface CityEntity extends defaultClasses.Base {}
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export class CityEntity extends defaultClasses.TimeStamps implements CityData {
   @prop({ required: true, trim: true, type: () => String, enum: CityName })
-  public name: CityName;
+  public name!: CityName;
 
   @prop({ required: true, trim: true, type: () => Object })
-  public location: LocationData;
+  public location!: LocationData;
 }
 
 export const CityModel = getModelForClass(CityEntity);

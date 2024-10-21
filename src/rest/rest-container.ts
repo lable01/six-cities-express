@@ -2,7 +2,7 @@ import { Container } from 'inversify';
 import { RestApp } from './rest-app.js';
 import { Component } from '../shared/enum/index.js';
 import { Config, DatabaseClient, Logger } from '../shared/interface/index.js';
-import { PinoLogger } from '../shared/libs/pino-logger/index.js';
+import { PinoLogger } from '../shared/libs/logger/index.js';
 import { RestSchemaData } from '../shared/types/index.js';
 import { RestConfig } from '../shared/libs/config/index.js';
 import { MongoDatabaseClient } from '../shared/libs/mongo-database-client/index.js';

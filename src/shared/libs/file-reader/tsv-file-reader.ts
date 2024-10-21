@@ -33,7 +33,6 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       name,
       email,
       avatarUrl,
-      password,
       typeUser,
       numberComments,
     ] = line.split('\t');
@@ -58,7 +57,7 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       maxAdults: this.parseInt(maxAdults),
       price: this.parseInt(price),
       goods: this.parseGoods(goods),
-      user: this.parseUser(name, email, avatarUrl, password, typeUser),
+      user: this.parseUser(name, email, avatarUrl, typeUser),
       numberComments: this.parseInt(numberComments),
     };
   }
@@ -98,14 +97,12 @@ export class TSVFileReader extends EventEmitter implements FileReader {
     name: string,
     email: string,
     avatarUrl: string,
-    password: string,
     typeUser: string,
   ): UserData {
     return {
       name,
       email,
       avatarUrl,
-      password,
       typeUser,
     };
   }

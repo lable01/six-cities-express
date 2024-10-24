@@ -16,8 +16,10 @@
     "compile": "tsc -p tsconfig.json",
     "clean": "rimraf dist",
     "ts": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm",
+    "help": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --help",
     "mock:server": "json-server ./mocks/mock-server-data.json --port 3123 --host localhost",
-    "mock:generate": " tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --generate 50 ./mocks/new-mock.tsv http://localhost:3123/api"
+    "mock:generate": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --generate 50 ./mocks/mock-data.tsv http://localhost:3123/api",
+    "mock:import": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --import ./mocks/mock-data.tsv"
   },
   "devDependencies": {
     "@types/convict": "6.1.6",

@@ -39,8 +39,6 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       longitudeOffer,
     ] = line.split('\t');
 
-    console.log(numberComments);
-
     return {
       title,
       description,
@@ -70,8 +68,8 @@ export class TSVFileReader extends EventEmitter implements FileReader {
     return {
       name: city,
       location: {
-        latitude: Number.parseInt(latitude, 10),
-        longitude: Number.parseInt(longitude, 10),
+        latitude: Number(latitude),
+        longitude: Number(longitude),
       },
     };
   }
@@ -122,8 +120,8 @@ export class TSVFileReader extends EventEmitter implements FileReader {
     longitudeOffer: string,
   ): LocationData {
     return {
-      latitude: Number.parseInt(latitudeOffer, 10),
-      longitude: Number.parseInt(longitudeOffer, 10),
+      latitude: Number(latitudeOffer),
+      longitude: Number(longitudeOffer),
     };
   }
 
@@ -147,9 +145,7 @@ export class TSVFileReader extends EventEmitter implements FileReader {
 
         const parsedOffer = this.parseLineToOffer(completeRow);
 
-        await new Promise((resolve) => {
-          this.emit('line', parsedOffer, resolve);
-        });
+        this.emit('line', parsedOffer);
       }
     }
 

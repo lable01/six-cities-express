@@ -19,6 +19,8 @@ export class Help implements Command {
             ${chalk.yellow('--generate <n> <path> <url>')}
         Команда для работы с docker (запускаем только команду):
             ${chalk.yellow('docker compose --file ./docker-compose.dev.yml --env-file ./.env --project-name "six-cities" up -d')}
+        Команды для соединения с базой данных:
+            ${chalk.yellow('npm run start:dev')}
     `),
     );
   }

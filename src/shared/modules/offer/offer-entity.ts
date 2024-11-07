@@ -33,6 +33,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     ref: CityEntity,
     required: true,
+    _id: false,
   })
   public cityId!: Ref<CityEntity>;
 
@@ -55,6 +56,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   public rating!: number;
 
   @prop({
+    type: () => String,
     enum: HousingType,
   })
   public type!: HousingType;
@@ -78,6 +80,7 @@ export class OfferEntity extends defaultClasses.TimeStamps {
   @prop({
     ref: UserEntity,
     required: true,
+    _id: false,
   })
   public userId!: Ref<UserEntity>;
 

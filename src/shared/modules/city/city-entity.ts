@@ -6,7 +6,7 @@ import {
 } from '@typegoose/typegoose';
 import { CityData } from '../../types/index.js';
 import { CityName } from '../../enum/index.js';
-import { LocationEntity } from './location-entity.js';
+import { LocationEntity } from '../location/index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface CityEntity extends defaultClasses.Base {}

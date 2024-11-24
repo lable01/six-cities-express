@@ -9,6 +9,7 @@ import {
 import { UserEntity } from '../user/index.js';
 import { CityEntity } from '../city/index.js';
 import { Goods, HousingType } from '../../enum/index.js';
+import { LocationEntity } from '../location/index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface OfferEntity extends defaultClasses.Base {}
@@ -86,6 +87,9 @@ export class OfferEntity extends defaultClasses.TimeStamps {
 
   @prop({ default: 0 })
   public numberComments!: number;
+
+  @prop({ required: true, _id: false })
+  public location!: LocationEntity;
 }
 
 export const OfferModel = getModelForClass(OfferEntity);

@@ -19,7 +19,7 @@
     "help": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --help",
     "mock:server": "json-server ./mocks/mock-server-data.json --port 3123 --host localhost",
     "mock:generate": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --generate 50 ./mocks/mock-data.tsv http://localhost:3123/api",
-    "mock:import": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --import ./mocks/mock-data.tsv"
+    "mock:import": "tsc --noEmit && node --no-warnings=ExperimentalWarning --loader ts-node/esm ./src/main-cli.ts --import ./mocks/mock-data.tsv admin test localhost six-cities secret"
   },
   "devDependencies": {
     "@types/convict": "6.1.6",

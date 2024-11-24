@@ -14,33 +14,29 @@ export class DefaultCityService implements CityService {
   ) {}
 
   public async create(dto: CreateCityDto): Promise<DocumentType<CityEntity>> {
-    const result = await this.cityModel.create(dto);
-    this.logger.info(`New city created: ${dto.name}`);
+    const cityData = {
+      name: dto.name,
+      location: dto.location,
+    };
+
+    const result = await this.cityModel.create(cityData);
+    this.logger.info(`New city created: ${result.name}`);
+
     return result;
   }
 
-  public async findByCityId(
-    cityId: string,
-  ): Promise<DocumentType<CityEntity> | null> {
-    return this.cityModel.findById(cityId).exec();
-  }
-
-  public async findByCityName(
-    cityName: string,
-  ): Promise<DocumentType<CityEntity> | null> {
-    return this.cityModel.findOne({ name: cityName }).exec();
-  }
-
-  public async findByCityNameOrCreate(
-    cityName: string,
+  public async findOrCreate(
     dto: CreateCityDto,
   ): Promise<DocumentType<CityEntity>> {
-    const existedCategory = await this.findByCityName(cityName);
+    let city = await this.cityModel.findOne({ name: dto.name }).exec();
 
-    if (existedCategory) {
-      return existedCategory;
+    if (!city) {
+      city = await this.create(dto);
+      this.logger.info(`City not found, created new city: ${city.name}`);
+    } else {
+      this.logger.info(`City found: ${city.name}`);
     }
 
-    return this.create(dto);
+    return city;
   }
 }

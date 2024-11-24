@@ -1,4 +1,5 @@
 import { Goods, HousingType } from '../../../enum/index.js';
+import { LocationData } from '../../../types/location.js';
 
 export class CreateOfferDto {
   public title: string;
@@ -17,4 +18,5 @@ export class CreateOfferDto {
   public goods: Goods[];
   public userId: string;
   public numberComments: number;
+  public location: LocationData;
 }

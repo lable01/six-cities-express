@@ -8,7 +8,10 @@ import { DefaultCityService } from './default-city-service.js';
 export function createCityContainer() {
   const cityContainer = new Container();
 
-  cityContainer.bind<CityService>(Component.CityService).to(DefaultCityService);
+  cityContainer
+    .bind<CityService>(Component.CityService)
+    .to(DefaultCityService)
+    .inSingletonScope();
   cityContainer
     .bind<types.ModelType<CityEntity>>(Component.CityModel)
     .toConstantValue(CityModel);

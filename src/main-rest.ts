@@ -5,6 +5,7 @@ import { Component } from './shared/enum/index.js';
 import { createUserContainer } from './shared/modules/user/index.js';
 import { createCityContainer } from './shared/modules/city/index.js';
 import { createOfferContainer } from './shared/modules/offer/index.js';
+import { createCommentContainer } from './shared/modules/comment/index.js';
 
 async function bootstrap() {
   const appContainer = Container.merge(
@@ -12,6 +13,7 @@ async function bootstrap() {
     createUserContainer(),
     createCityContainer(),
     createOfferContainer(),
+    createCommentContainer(),
   );
   const application = appContainer.get<RestApp>(Component.RestApp);
   await application.init();

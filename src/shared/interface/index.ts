@@ -7,3 +7,4 @@ export { Config } from './config.js';
 export { DatabaseClient } from './database-client.js';
 export { CityService } from './city-service.js';
 export { OfferService } from './offer-service.js';
+export { CommentService } from './comment-service.js';

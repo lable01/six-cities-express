@@ -23,6 +23,24 @@ paths:
         - users
       summary: Регистрация пользователя
       description: Регистрирует нового пользователя.
+      requestBody:
+        description: Информация для создания нового пользователя.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createUser'
+        required: true
+
+      responses:
+        "201":
+          description: Пользователь зарегистрирован. Объект пользователя.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+        "409":
+          description: Пользователь с таким email уже существует.
 
   /users/login:
     post:
@@ -47,3 +65,41 @@ paths:
       summary: Загрузить изображение аватара
       description: Загружает изображение аватара пользователя. Изображение
         аватара должно быть в формате `png` или `jpg`.
+
+components:
+  schemas:
+    createUser:
+      type: object
+
+      properties:
+        name:
+          type: string
+          example: Nikolay
+
+        email:
+          type: string
+          example: Nikolay@mail.ru
+
+        avatarurl:
+          type: string
+          example: https://url-to-image/image.png
+
+        typeUser:
+          type: string
+          example: pro
+
+        password:
+          type: string
+          example: 123456
+
+    user:
+      type: object
+
+      properties:
+        id:
+          type: string
+          example: 6329c3d6a04ab1061c6425ea
+
+        email:
+          type: string
+          example: Nikolay@mail.ru

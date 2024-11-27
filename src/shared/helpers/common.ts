@@ -1,4 +1,4 @@
-import { ValueMockCoordinates } from './const.js';
+import { ValueMockCoordinates } from '../enum/index.js';
 
 export function generateRandomValueCoordinates() {
   return (

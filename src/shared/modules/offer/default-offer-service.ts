@@ -1,8 +1,9 @@
 import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 import { Logger, OfferService } from '../../interface/index.js';
-import { Component } from '../../enum/index.js';
-import { CreateOfferDto, OfferEntity } from '../offer/index.js';
+import { Component, SortType } from '../../enum/index.js';
+import { CreateOfferDto, OfferEntity, UpdateOfferDto } from '../offer/index.js';
+import { DEFAULT_CITY_FAVOTITES_OFFER_COUNT } from '../../const/const.js';
 
 @injectable()
 export class DefaultOfferService implements OfferService {
@@ -19,9 +20,56 @@ export class DefaultOfferService implements OfferService {
     return result;
   }
 
+  public async find(): Promise<DocumentType<OfferEntity>[]> {
+    return this.offerModel
+      .find()
+      .sort({ createdAt: SortType.Down })
+      .populate(['cityId', 'userId'])
+      .exec();
+  }
+
   public async findById(
     offerId: string,
   ): Promise<DocumentType<OfferEntity> | null> {
-    return this.offerModel.findById(offerId).exec();
+    return this.offerModel
+      .findById(offerId)
+      .populate(['cityId', 'userId'])
+      .exec();
+  }
+
+  public async updateById(
+    offerId: string,
+    dto: UpdateOfferDto,
+  ): Promise<DocumentType<OfferEntity> | null> {
+    return this.offerModel
+      .findByIdAndUpdate(offerId, dto, { new: true })
+      .populate(['cityId', 'userId'])
+      .exec();
+  }
+
+  public async deleteById(
+    offerId: string,
+  ): Promise<DocumentType<OfferEntity> | null> {
+    return this.offerModel.findByIdAndDelete(offerId).exec();
+  }
+
+  public async findByCityPremiumOfferId(
+    cityId: string,
+    count?: number,
+  ): Promise<DocumentType<OfferEntity>[] | null> {
+    const filter = { cityId: cityId, isPremium: true };
+    const limit = count ?? DEFAULT_CITY_FAVOTITES_OFFER_COUNT;
+    return this.offerModel
+      .find({ filter }, {}, { limit })
+      .populate(['cityId', 'userId'])
+      .exec();
+  }
+
+  // prettier-ignore
+  public async findByFavoritesOffers(): Promise<DocumentType<OfferEntity>[] | null> {
+    return this.offerModel
+      .find({ isFavorite: true })
+      .populate(['cityId', 'userId'])
+      .exec();
   }
 }

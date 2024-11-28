@@ -6,13 +6,7 @@ import {
   getRandomItem,
   getRandomItems,
 } from '../../helpers/index.js';
-import {
-  CityCoordinates,
-  CityName,
-  Goods,
-  HousingType,
-  TypeUser,
-} from '../../enum/index.js';
+import { CityName, Goods, HousingType, TypeUser } from '../../enum/index.js';
 import {
   MAX_ADULTS,
   MAX_COMMENTS,
@@ -27,6 +21,7 @@ import {
 } from './const.js';
 import dayjs from 'dayjs';
 import { generateRandomValueCoordinates } from '../../helpers/common.js';
+import { CityCoordinates } from '../../const/index.js';
 
 export class TSVOfferGenerator implements OfferGenerator {
   private city: CityName = CityName.Paris;

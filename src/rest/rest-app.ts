@@ -1,8 +1,8 @@
 import { Config, DatabaseClient, Logger } from '../shared/interface/index.js';
 import { RestSchemaData } from '../shared/types/index.js';
 import { inject, injectable } from 'inversify';
-import { Component } from '../shared/enum/index.js';
 import { getMongoURI } from '../shared/helpers/index.js';
+import { Component } from '../shared/const/index.js';
 
 @injectable()
 export class RestApp {

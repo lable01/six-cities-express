@@ -1,2 +1,0 @@
-export const DEFAULT_OFFER_COUNT = 60;
-export const DEFAULT_CITY_FAVOTITES_OFFER_COUNT = 3;

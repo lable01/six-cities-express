@@ -1,0 +1,1 @@
+export const DEFAULT_CITY_FAVORITES_OFFER_COUNT = 3;

@@ -1,9 +1,10 @@
 import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 import { Logger, OfferService } from '../../interface/index.js';
-import { Component, SortType } from '../../enum/index.js';
+import { SortType } from '../../enum/index.js';
+import { Component } from '../../const/index.js';
 import { CreateOfferDto, OfferEntity, UpdateOfferDto } from '../offer/index.js';
-import { DEFAULT_CITY_FAVOTITES_OFFER_COUNT } from '../../const/const.js';
+import { DEFAULT_CITY_FAVORITES_OFFER_COUNT } from '../../const/default-const.js';
 
 @injectable()
 export class DefaultOfferService implements OfferService {
@@ -58,7 +59,7 @@ export class DefaultOfferService implements OfferService {
     count?: number,
   ): Promise<DocumentType<OfferEntity>[] | null> {
     const filter = { cityId: cityId, isPremium: true };
-    const limit = count ?? DEFAULT_CITY_FAVOTITES_OFFER_COUNT;
+    const limit = count ?? DEFAULT_CITY_FAVORITES_OFFER_COUNT;
     return this.offerModel
       .find({ filter }, {}, { limit })
       .populate(['cityId', 'userId'])

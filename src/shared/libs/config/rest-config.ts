@@ -3,7 +3,7 @@ import { config } from 'dotenv';
 import { configRestSchema } from './rest-schema.js';
 import { RestSchemaData } from '../../types/index.js';
 import { inject, injectable } from 'inversify';
-import { Component } from '../../enum/index.js';
+import { Component } from '../../const/index.js';
 
 @injectable()
 export class RestConfig implements Config<RestSchemaData> {

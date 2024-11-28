@@ -3,7 +3,7 @@ import { UserService } from '../../interface/user-service.js';
 import { UserEntity } from './user-entity.js';
 import { CreateUserDto } from './dto/create-user-dto.js';
 import { inject, injectable } from 'inversify';
-import { Component } from '../../enum/index.js';
+import { Component } from '../../const/index.js';
 import { Logger } from '../../interface/index.js';
 
 @injectable()

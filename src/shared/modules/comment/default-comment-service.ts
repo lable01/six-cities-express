@@ -3,7 +3,7 @@ import { DocumentType, types } from '@typegoose/typegoose';
 
 import { CommentEntity } from './comment-entity.js';
 import { CreateCommentDto } from './dto/create-comment-dto.js';
-import { Component } from '../../enum/index.js';
+import { Component } from '../../const/index.js';
 import { CommentService } from '../../interface/index.js';
 
 @injectable()

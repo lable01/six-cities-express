@@ -2,7 +2,7 @@ import { inject } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 
 import { CityService, Logger } from '../../interface/index.js';
-import { Component } from '../../enum/index.js';
+import { Component } from '../../const/index.js';
 import { CityEntity } from './city-entity.js';
 import { CreateCityDto } from './dto/create-city-dto.js';
 

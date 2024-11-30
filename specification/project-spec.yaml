@@ -1,4 +1,4 @@
-openapi: "3.0.2"
+openapi: '3.0.2'
 info:
   title: API сервер для демо-проекта «Шесть городов».
   description: |-
@@ -32,14 +32,17 @@ paths:
         required: true
 
       responses:
-        "201":
+        '201':
           description: Пользователь зарегистрирован. Объект пользователя.
           content:
             application/json:
               schema:
                 $ref: '#/components/schemas/user'
 
-        "409":
+        '400':
+          description: Некорректные данные для создания пользователя.
+
+        '409':
           description: Пользователь с таким email уже существует.
 
   /users/login:
@@ -49,28 +52,251 @@ paths:
       summary: Авторизация пользователя
       description: Авторизует пользователя на основе логина и пароля
 
+      requestBody:
+        description: Информация для логина пользователя.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/login'
+        required: true
+
+      responses:
+        '200':
+          description: Пользователь авторизован.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
+
+        '400':
+          description: Несуществующий логин или пароль.
+
     get:
       tags:
         - users
       summary: Проверка состояния пользователя
       description: Возвращает информацию по авторизованному пользователю
+
       responses:
         '200':
-          description: OK
+          description: Информация по авторизованному пользователю.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/user'
 
-  /users/{userId}/avatar:
+        '404':
+          description: Пользователь не найден.
+
+  /users/favorites:
+    get:
+      tags:
+        - users
+      summary: Получение списка предложений, добавленных в избранное
+      description: Возвращает список предложений, добавленных в избранное
+
+      responses:
+        '200':
+          description: Массив предложений, добавленных в избранное.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offers'
+
+        '401':
+          description: 'Пользоваетель не авторизован'
+
+  /users/favorites/{offerId}:
     post:
       tags:
         - users
-      summary: Загрузить изображение аватара
-      description: Загружает изображение аватара пользователя. Изображение
-        аватара должно быть в формате `png` или `jpg`.
+      summary: Добавление предложения в избранное
+      description: Добавляет предложение в избранное
+
+      responses:
+        '200':
+          description: Предложение добавлено в избранное.
+
+        '404':
+          description: Предложение с таким id не найдено.
+
+        '401':
+          description: 'Пользоваетель не авторизован'
+
+        '409':
+          description: 'Предложение уже в избранных'
+
+    delete:
+      tags:
+        - users
+      summary: Удаление предложения из избранного
+      description: Удаляет предложение из избранного
+
+      responses:
+        '204':
+          description: Предложение удалено из избранного.
+
+        '404':
+          description: Предложение с таким id не найдено.
+
+        '401':
+          description: 'Пользоваетель не авторизован'
+
+  /offers:
+    post:
+      tags:
+        - offers
+      summary: Создание нового предложения
+      description: Создает новое предложение
+
+      requestBody:
+        description: Информация для нового предложения.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOffer'
+        required: true
+
+      responses:
+        '200':
+          description: Предложение создано.
+
+        '400':
+          description: Введена некорректная информация
+
+        '403':
+          description: Только авторизованные пользователи могут создавать предложение
+
+    get:
+      tags:
+        - offers
+      summary: Получение списка предложений по аренде
+      description: Возвращает список предложений по аренде
+
+      parameters:
+        - name: length
+          in: query
+          schema:
+            type: integer
+            minimum: 1
+
+      responses:
+        '200':
+          description: Массив предложений.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offers'
+
+  /offers/{offerId}:
+    patch:
+      tags:
+        - offers
+      summary: Редактирование предложения
+      description: Редактирует предложение
+
+      requestBody:
+        description: Информация для логина пользователя.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createOffer'
+
+      responses:
+        '200':
+          description: Предложение обновлено.
+
+        '404':
+          description: Предложение с таким id не найдено.
+
+        '400':
+          description: Данные введены некорректно
+
+        '403':
+          description: Только авторизованные пользователи могут редактировать предложение
+
+    delete:
+      tags:
+        - offers
+      summary: Удаление предложения
+      description: Удаляет предложение
+
+      responses:
+        '204':
+          description: Предложение удалено.
+
+        '404':
+          description: Предложение с таким id не найдено.
+
+        '403':
+          description: Только авторизованные пользователи могут удалять предложение
+
+    get:
+      tags:
+        - offers
+      summary: Получение детальной информации о предложении
+      description: Возвращает детальную информации о предложении
+
+      responses:
+        '200':
+          description: Информация о предложении.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/offer'
+
+        '404':
+          description: Предложение с таким id не найдено.
+
+  /comments/{offerId}:
+    get:
+      tags:
+        - comments
+      summary: Получение списка комментариев для предложения
+      description: Возвращает список комментариев для предложения
+
+      responses:
+        '200':
+          description: Массив комментариев.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/comments'
+
+        '404':
+          description: Предложение с таким id не найдено.
+
+    post:
+      tags:
+        - comments
+      summary: Добавление комментария для предложения
+      description: Добавляет комментарий для предложения
+
+      requestBody:
+        description: Информация для нового комментария.
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/createComment'
+        required: true
+
+      responses:
+        '200':
+          description: Комментарий добавлен.
+
+        '400':
+          description: Данные введены некорректно.
+
+        '404':
+          description: Предложение с таким id не найдено.
+
+        '403':
+          description: Только авторизованные пользователи могут оставлять комментарии
 
 components:
   schemas:
     createUser:
       type: object
-
       properties:
         name:
           type: string
@@ -98,8 +324,206 @@ components:
       properties:
         id:
           type: string
-          example: 6329c3d6a04ab1061c6425ea
+          example: fix42342
+
+        name:
+          type: string
+          example: Иван
 
         email:
           type: string
-          example: Nikolay@mail.ru
+          example: email@mail.ru
+
+        typeUser:
+          type: string
+          enum:
+            - pro
+            - обычный
+
+        avatarPath:
+          type: string
+          example: image.jpg
+
+    login:
+      type: object
+      properties:
+        email:
+          type: string
+          example: email@mail.ru
+
+        password:
+          type: string
+          example: 12345678
+
+    offer:
+      type: object
+      properties:
+        id:
+          type: string
+          example: one42342
+
+        title:
+          type: string
+          example: Предложение
+
+        createdDate:
+          type: string
+          example: 2024-09-11T21:16:16.734Z
+
+        city:
+          type: string
+          example: Paris
+
+        previewImagePath:
+          type: string
+          example: image.jpg
+
+        photos:
+          type: array
+          items:
+            type: string
+            example: image.jpg
+
+        isPremium:
+          type: boolean
+
+        rating:
+          type: integer
+
+        housingType:
+          type: string
+          enum:
+            - apartment
+            - house
+            - room
+            - hotel
+
+        roomsNumber:
+          type: integer
+
+        visitorsNumber:
+          type: integer
+
+        price:
+          type: integer
+
+        facilities:
+          type: array
+          items:
+            type: string
+            enum:
+              - Breakfast
+              - Air conditioning
+              - Laptop friendly workspace
+              - Baby seat
+              - Washer
+              - Towels
+              - Fridge
+
+        author:
+          $ref: '#/components/schemas/user'
+
+        coords:
+          type: object
+          properties:
+            latitude:
+              type: integer
+
+            longitude:
+              type: integer
+
+    createOffer:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Предложение
+
+        city:
+          type: string
+          example: Paris
+
+        previewImagePath:
+          type: string
+          example: image.jpg
+
+        photos:
+          type: array
+          items:
+            type: string
+            example: image.jpg
+
+        housingType:
+          type: string
+          enum:
+            - apartment
+            - house
+            - room
+            - hotel
+
+        roomsNumber:
+          type: integer
+
+        visitorsNumber:
+          type: integer
+
+        price:
+          type: integer
+
+        facilities:
+          type: array
+          items:
+            type: string
+            enum:
+              - Breakfast
+              - Air conditioning
+              - Laptop friendly workspace
+              - Baby seat
+              - Washer
+              - Towels
+              - Fridge
+
+    offers:
+      type: array
+      items:
+        $ref: '#/components/schemas/offer'
+
+    comment:
+      type: object
+      properties:
+        id:
+          type: string
+          example: kick43423
+
+        text:
+          type: string
+          example: Текст
+
+        createdDate:
+          type: string
+          example: 2024-09-11T21:16:16.734Z
+
+        rating:
+          type: integer
+
+        offerId:
+          $ref: '#/components/schemas/offer'
+
+        authorId:
+          $ref: '#/components/schemas/user'
+
+    comments:
+      type: array
+      items:
+        $ref: '#/components/schemas/comment'
+
+    createComment:
+      type: object
+      properties:
+        text:
+          type: string
+          example: Текст
+
+        authorId:
+          type: string
+          example: over43423

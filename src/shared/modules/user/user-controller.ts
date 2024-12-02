@@ -7,7 +7,7 @@ import { Config, Logger } from '../../interface/index.js';
 import { HttpMethod } from '../../enum/index.js';
 import { CreateUserRequest } from '../../types/create-user-request.js';
 import { UserService } from '../../interface/user-service.js';
-import { RestSchemaData } from '../../types/index.js';
+import { LoginUserRequest, RestSchemaData } from '../../types/index.js';
 import { StatusCodes } from 'http-status-codes';
 import { fillDTO } from '../../helpers/common.js';
 import { UserRdo } from './rdo/user-rdo.js';
@@ -27,6 +27,11 @@ export class UserController extends BaseController {
       path: '/register',
       method: HttpMethod.Post,
       handler: this.create,
+    });
+    this.addRoute({
+      path: '/login',
+      method: HttpMethod.Post,
+      handler: this.login,
     });
   }
 
@@ -49,5 +54,26 @@ export class UserController extends BaseController {
       this.configService.get('SALT'),
     );
     this.created(res, fillDTO(UserRdo, result));
+  }
+
+  public async login(
+    { body }: LoginUserRequest,
+    _res: Response,
+  ): Promise<void> {
+    const existsUser = await this.userService.findByEmail(body.email);
+
+    if (!existsUser) {
+      throw new HttpError(
+        StatusCodes.BAD_REQUEST,
+        `User with email ${body.email} not found.`,
+        'UserController',
+      );
+    }
+
+    throw new HttpError(
+      StatusCodes.NOT_IMPLEMENTED,
+      'Not implemented',
+      'UserController',
+    );
   }
 }

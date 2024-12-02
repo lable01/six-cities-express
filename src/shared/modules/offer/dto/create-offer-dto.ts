@@ -9,14 +9,11 @@ export class CreateOfferDto {
   public previewImage!: string;
   public images!: string[];
   public isPremium!: boolean;
-  public isFavorite!: boolean;
-  public rating!: number;
   public type!: HousingType;
   public numberRooms!: number;
   public maxAdults!: number;
   public price!: number;
   public goods!: Goods[];
   public userId!: string;
-  public numberComments!: number;
   public location!: LocationData;
 }

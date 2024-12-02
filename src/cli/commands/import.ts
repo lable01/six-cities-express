@@ -75,15 +75,12 @@ export class Import implements Command {
       previewImage: offer.previewImage,
       images: offer.images,
       isPremium: offer.isPremium,
-      isFavorite: offer.isFavorite,
-      rating: offer.rating,
       type: offer.type,
       numberRooms: offer.numberRooms,
       price: offer.price,
       maxAdults: offer.maxAdults,
       goods: offer.goods,
-      userId: user.id,
-      numberComments: offer.numberComments,
+      userId: user._id.toString(),
       location: offer.location,
     });
   }

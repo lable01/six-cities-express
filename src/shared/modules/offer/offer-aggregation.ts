@@ -1,14 +1,38 @@
 import { DEFAULT_COMMENTS_COUNT } from '../../const/index.js';
 import { SortType } from '../../enum/index.js';
 
-export const populateAuthor = {
-  $lookup: {
-    from: 'users',
-    localField: 'authorId',
-    foreignField: '_id',
-    as: 'author',
+export const getOffersDetails = [
+  {
+    $lookup: {
+      from: 'users',
+      localField: 'userId',
+      foreignField: '_id',
+      as: 'user',
+    },
   },
-};
+  { $unwind: '$user' },
+  {
+    $lookup: {
+      from: 'city',
+      localField: 'cityId',
+      foreignField: '_id',
+      as: 'city',
+    },
+  },
+  { $unwind: '$city' },
+];
+
+export const populateAuthor = [
+  {
+    $lookup: {
+      from: 'users',
+      localField: 'userId',
+      foreignField: '_id',
+      as: 'user',
+    },
+  },
+  { $unwind: '$user' },
+];
 
 export const populateCommentsCount = [
   {

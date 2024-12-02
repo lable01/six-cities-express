@@ -6,3 +6,4 @@ export { MockServerData } from './mock-server-data.js';
 export { RestSchemaData } from './rest-schema.js';
 export { RequestBody } from './request-body.js';
 export { RequestParams } from './request-params.js';
+export { LoginUserRequest } from './login-user-request.js';

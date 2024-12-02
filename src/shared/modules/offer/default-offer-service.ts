@@ -1,7 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 import { Logger, OfferService } from '../../interface/index.js';
-import { SortType } from '../../enum/index.js';
 import {
   Component,
   DEFAULT_CITY_FAVORITES_OFFER_COUNT,
@@ -10,11 +9,12 @@ import {
 } from '../../const/index.js';
 import { CreateOfferDto, OfferEntity, UpdateOfferDto } from '../offer/index.js';
 import {
+  getOffersDetails,
   populateAuthor,
   populateComments,
-  populateCommentsCount,
 } from './offer-aggregation.js';
 import { Types } from 'mongoose';
+import { SortType } from '../../enum/index.js';
 
 @injectable()
 export class DefaultOfferService implements OfferService {
@@ -35,25 +35,24 @@ export class DefaultOfferService implements OfferService {
     const limit = count || DEFAULT_OFFER_COUNT;
 
     return this.offerModel
-      .find()
-      .sort({ createdAt: SortType.Down })
-      .limit(limit)
-      .aggregate([populateAuthor, ...populateCommentsCount])
+      .aggregate([
+        ...getOffersDetails,
+        { $sort: { createdAt: SortType.Down } },
+        { $limit: limit },
+      ])
       .exec();
   }
 
   public async findById(
     offerId: string,
   ): Promise<DocumentType<OfferEntity> | null> {
-    const result = this.offerModel
-      .findById(offerId)
+    const result = await this.offerModel
       .aggregate([
         { $match: { _id: new Types.ObjectId(offerId) } },
-        populateAuthor,
+        ...populateAuthor,
         ...populateComments,
       ])
       .exec();
-
     return result[0] || null;
   }
 

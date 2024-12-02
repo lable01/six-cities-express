@@ -9,15 +9,11 @@ import {
 import { CityName, Goods, HousingType, TypeUser } from '../../enum/index.js';
 import {
   MAX_ADULTS,
-  MAX_COMMENTS,
   MAX_NUMBER_ROOM,
   MAX_PRICE,
-  MAX_RATING,
   MIN_ADULTS,
-  MIN_COMMENTS,
   MIN_NUMBER_ROOM,
   MIN_PRICE,
-  MIN_RATING,
 } from './const.js';
 import dayjs from 'dayjs';
 import { generateRandomValueCoordinates } from '../../helpers/common.js';
@@ -40,10 +36,6 @@ export class TSVOfferGenerator implements OfferGenerator {
     const previewImage = getRandomItem<string>(this.mockData.previewImage);
     const images = getRandomItems<string>(this.mockData.image).join(';');
     const isPremium = getRandomBoolean().toString();
-    const isFavorite = getRandomBoolean().toString();
-    const rating = Math.round(
-      generateRandomValue(MIN_RATING, MAX_RATING),
-    ).toString();
     const type = this.generateHousingType().toString();
     const numberRooms = Math.round(
       generateRandomValue(MIN_NUMBER_ROOM, MAX_NUMBER_ROOM),
@@ -59,9 +51,6 @@ export class TSVOfferGenerator implements OfferGenerator {
     const email = getRandomItem<string>(this.mockData.email);
     const avatarUrl = getRandomItem<string>(this.mockData.avatarUrl);
     const typeUser = this.generateTypeUser();
-    const numberComments = Math.round(
-      generateRandomValue(MIN_COMMENTS, MAX_COMMENTS),
-    ).toString();
     const latitudeOffer = latitudeCity + generateRandomValueCoordinates();
     const longitudeOffer = longitudeCity + generateRandomValueCoordinates();
 
@@ -75,8 +64,6 @@ export class TSVOfferGenerator implements OfferGenerator {
       previewImage,
       images,
       isPremium,
-      isFavorite,
-      rating,
       type,
       numberRooms,
       maxAdults,
@@ -86,7 +73,6 @@ export class TSVOfferGenerator implements OfferGenerator {
       email,
       avatarUrl,
       typeUser,
-      numberComments,
       latitudeOffer,
       longitudeOffer,
     ].join('\t');

@@ -23,8 +23,6 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       previewImage,
       images,
       isPremium,
-      isFavorite,
-      rating,
       type,
       numberRooms,
       maxAdults,
@@ -34,7 +32,6 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       email,
       avatarUrl,
       typeUser,
-      numberComments,
       latitudeOffer,
       longitudeOffer,
     ] = line.split('\t');
@@ -47,15 +44,12 @@ export class TSVFileReader extends EventEmitter implements FileReader {
       previewImage: previewImage,
       images: this.parseArrayString(images),
       isPremium: this.parseBoolean(isPremium),
-      isFavorite: this.parseBoolean(isFavorite),
-      rating: this.parseInt(rating),
       type: type as HousingType,
       numberRooms: this.parseInt(numberRooms),
       maxAdults: this.parseInt(maxAdults),
       price: this.parseInt(price),
       goods: this.parseGoods(goods),
       user: this.parseUser(name, email, avatarUrl, typeUser),
-      numberComments: this.parseInt(numberComments),
       location: this.parseLocationOffer(latitudeOffer, longitudeOffer),
     };
   }

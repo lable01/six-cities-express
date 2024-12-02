@@ -1,4 +1,4 @@
-import { inject } from 'inversify';
+import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 
 import { CityService, Logger } from '../../interface/index.js';
@@ -6,6 +6,7 @@ import { Component } from '../../const/index.js';
 import { CityEntity } from './city-entity.js';
 import { CreateCityDto } from './dto/create-city-dto.js';
 
+@injectable()
 export class DefaultCityService implements CityService {
   constructor(
     @inject(Component.Logger) private readonly logger: Logger,
@@ -38,5 +39,9 @@ export class DefaultCityService implements CityService {
     }
 
     return city;
+  }
+
+  public async find(): Promise<DocumentType<CityEntity>[]> {
+    return this.cityModel.find().exec();
   }
 }

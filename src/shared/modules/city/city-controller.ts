@@ -5,6 +5,8 @@ import { BaseController } from '../../libs/rest/index.js';
 import { Component } from '../../const/index.js';
 import { CityService, Logger } from '../../interface/index.js';
 import { HttpMethod } from '../../enum/index.js';
+import { fillDTO } from '../../helpers/common.js';
+import { CityRdo } from './rdo/city-rdo.js';
 
 @injectable()
 export class CityController extends BaseController {
@@ -18,15 +20,11 @@ export class CityController extends BaseController {
     this.logger.info('Register routes for CategoryController');
 
     this.addRoute({ path: '/', method: HttpMethod.Get, handler: this.index });
-    this.addRoute({ path: '/', method: HttpMethod.Post, handler: this.create });
   }
 
   public async index(_req: Request, res: Response): Promise<void> {
     const city = await this.cityService.find();
-    this.ok(res, city);
-  }
-
-  public create(_req: Request, _res: Response): void {
-    // Код обработчика
+    const responseData = fillDTO(CityRdo, city);
+    this.ok(res, responseData);
   }
 }

@@ -2,6 +2,7 @@ import { injectable } from 'inversify';
 import { StatusCodes } from 'http-status-codes';
 import { Response, Router } from 'express';
 import { Controller, Logger, Route } from '../../../interface/index.js';
+import expressAsyncHandler from 'express-async-handler';
 
 @injectable()
 export abstract class BaseController implements Controller {
@@ -19,7 +20,8 @@ export abstract class BaseController implements Controller {
   }
 
   public addRoute(route: Route) {
-    this._router[route.method](route.path, route.handler.bind(this));
+    const wrapperAsyncHandler = expressAsyncHandler(route.handler.bind(this));
+    this._router[route.method](route.path, wrapperAsyncHandler);
     this.logger.info(
       `Route registered: ${route.method.toUpperCase()} ${route.path}`,
     );

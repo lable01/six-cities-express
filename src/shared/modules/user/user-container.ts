@@ -5,6 +5,8 @@ import { UserService } from '../../interface/user-service.js';
 import { DefaultUserService } from './default-user-service.js';
 import { UserEntity, UserModel } from './user-entity.js';
 import { Component } from '../../const/index.js';
+import { Controller } from '../../interface/index.js';
+import { UserController } from './user-controller.js';
 
 export function createUserContainer() {
   const userContainer = new Container();
@@ -15,6 +17,10 @@ export function createUserContainer() {
   userContainer
     .bind<types.ModelType<UserEntity>>(Component.UserModel)
     .toConstantValue(UserModel);
+  userContainer
+    .bind<Controller>(Component.UserController)
+    .to(UserController)
+    .inSingletonScope();
 
   return userContainer;
 }

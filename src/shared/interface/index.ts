@@ -10,3 +10,4 @@ export { OfferService } from './offer-service.js';
 export { CommentService } from './comment-service.js';
 export { Route } from './route.js';
 export { Controller } from './controller.js';
+export { ExceptionFilter } from './exception-filter.js';

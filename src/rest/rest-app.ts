@@ -2,6 +2,7 @@ import {
   Config,
   Controller,
   DatabaseClient,
+  ExceptionFilter,
   Logger,
 } from '../shared/interface/index.js';
 import { RestSchemaData } from '../shared/types/index.js';
@@ -23,6 +24,10 @@ export class RestApp {
     private readonly databaseClient: DatabaseClient,
     @inject(Component.CityController)
     private readonly cityController: Controller,
+    @inject(Component.ExceptionFilter)
+    private readonly appExceptionFilter: ExceptionFilter,
+    @inject(Component.UserController)
+    private readonly userController: Controller,
   ) {
     this.server = express();
   }
@@ -46,6 +51,17 @@ export class RestApp {
 
   private async initControllers() {
     this.server.use('/city', this.cityController.router);
+    this.server.use('/users', this.userController.router);
+  }
+
+  private async initMiddleware() {
+    this.server.use(express.json());
+  }
+
+  private async initExceptionFilters() {
+    this.server.use(
+      this.appExceptionFilter.catch.bind(this.appExceptionFilter),
+    );
   }
 
   public async init() {
@@ -54,9 +70,17 @@ export class RestApp {
     await this.initDb();
     this.logger.info('Init database completed');
 
+    this.logger.info('Init app-level middleware');
+    await this.initMiddleware();
+    this.logger.info('App-level middleware initialization completed');
+
     this.logger.info('Init controllers');
     await this.initControllers();
     this.logger.info('Controller initialization completed');
+
+    this.logger.info('Init exception filters');
+    await this.initExceptionFilters();
+    this.logger.info('Exception filters initialization compleated');
 
     this.logger.info('Try to init server');
     await this.initServer();

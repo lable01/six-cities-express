@@ -1,9 +1,9 @@
 import {
-  Config,
-  Controller,
+  ConfigContract,
+  ControllerContract,
   DatabaseClient,
   ExceptionFilter,
-  Logger,
+  LoggerContract,
 } from '../shared/interface/index.js';
 import { RestSchemaData } from '../shared/types/index.js';
 import { inject, injectable } from 'inversify';
@@ -17,19 +17,21 @@ export class RestApp {
 
   constructor(
     @inject(Component.Logger)
-    private readonly logger: Logger,
+    private readonly logger: LoggerContract,
     @inject(Component.Config)
-    private readonly config: Config<RestSchemaData>,
+    private readonly config: ConfigContract<RestSchemaData>,
     @inject(Component.DatabaseClient)
     private readonly databaseClient: DatabaseClient,
     @inject(Component.CityController)
-    private readonly cityController: Controller,
+    private readonly cityController: ControllerContract,
     @inject(Component.ExceptionFilter)
     private readonly appExceptionFilter: ExceptionFilter,
     @inject(Component.UserController)
-    private readonly userController: Controller,
+    private readonly userController: ControllerContract,
     @inject(Component.OfferController)
-    private readonly offerController: Controller,
+    private readonly offerController: ControllerContract,
+    @inject(Component.CommentController)
+    private readonly commentController: ControllerContract,
   ) {
     this.server = express();
   }
@@ -55,6 +57,7 @@ export class RestApp {
     this.server.use('/city', this.cityController.router);
     this.server.use('/users', this.userController.router);
     this.server.use('/offers', this.offerController.router);
+    this.server.use('/comments', this.commentController.router);
   }
 
   private async initMiddleware() {

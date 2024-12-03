@@ -1,4 +1,4 @@
-import { Expose, Type } from 'class-transformer';
+import { Expose, Transform, Type } from 'class-transformer';
 import { UserRdo } from '../../user/rdo/user-rdo.js';
 import { CityRdo } from '../../city/index.js';
 import { Goods, HousingType } from '../../../enum/index.js';
@@ -6,6 +6,7 @@ import { LocationRdo } from '../../location/index.js';
 
 export class FullOfferRdo {
   @Expose({ name: '_id' })
+  @Transform((value) => value.obj._id.toString())
   public id!: string;
 
   @Expose()

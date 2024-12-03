@@ -2,6 +2,6 @@
   "watch": [
     "src"
   ],
-  "ext": "ts, json",
+  "ext": "ts, json, http",
   "exec": "npm run ts ./src/main-rest.ts | pino-pretty --colorize --translateTime SYS:standard"
 }

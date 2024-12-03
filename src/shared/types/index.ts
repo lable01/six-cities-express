@@ -8,3 +8,4 @@ export { RequestBody } from './request-body.js';
 export { RequestParams } from './request-params.js';
 export { LoginUserRequest } from './login-user-request.js';
 export { ParamOfferId } from './param-offerid.js';
+export { CreateCommentRequest } from './create-comment-request.js';

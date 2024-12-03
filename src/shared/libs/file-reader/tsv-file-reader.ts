@@ -1,11 +1,11 @@
-import { FileReader } from '../../interface/index.js';
+import { FileReaderContract } from '../../interface/index.js';
 import { CityData, OfferData, UserData } from '../../types/index.js';
 import { CityName, Goods, HousingType } from '../../enum/index.js';
 import EventEmitter from 'node:events';
 import { createReadStream } from 'node:fs';
 import { LocationData } from '../../types/location.js';
 
-export class TSVFileReader extends EventEmitter implements FileReader {
+export class TSVFileReader extends EventEmitter implements FileReaderContract {
   private CHUNK_SIZE = 16384; // 16KB
 
   constructor(private readonly filename: string) {

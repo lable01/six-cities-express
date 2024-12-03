@@ -1,11 +1,11 @@
 import got from 'got';
 import { MockServerData } from '../../shared/types/index.js';
-import { Command } from '../../shared/interface/index.js';
+import { CommandContract } from '../../shared/interface/index.js';
 import { TSVOfferGenerator } from '../../shared/libs/offer-generator/index.js';
 import { TSVFileWriter } from '../../shared/libs/file-writer/index.js';
 import { getErrorMessage } from '../../shared/helpers/index.js';
 
-export class Generate implements Command {
+export class Generate implements CommandContract {
   private initialData: MockServerData;
 
   private async load(url: string) {

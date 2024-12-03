@@ -20,4 +20,5 @@ export interface OfferService {
   ): Promise<DocumentType<OfferEntity>[] | null>;
   findByFavoritesOffers(): Promise<DocumentType<OfferEntity>[] | null>;
   incCommentCount(offerId: string): Promise<DocumentType<OfferEntity> | null>;
+  exists(documentId: string): Promise<boolean>;
 }

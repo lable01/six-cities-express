@@ -1,10 +1,10 @@
 import { Container } from 'inversify';
 import { RestApp } from './rest-app.js';
 import {
-  Config,
+  ConfigContract,
   DatabaseClient,
   ExceptionFilter,
-  Logger,
+  LoggerContract,
 } from '../shared/interface/index.js';
 import { PinoLogger } from '../shared/libs/logger/index.js';
 import { RestSchemaData } from '../shared/types/index.js';
@@ -21,11 +21,11 @@ export function createRestAppContainer() {
     .to(RestApp)
     .inSingletonScope();
   restAppContainer
-    .bind<Logger>(Component.Logger)
+    .bind<LoggerContract>(Component.Logger)
     .to(PinoLogger)
     .inSingletonScope();
   restAppContainer
-    .bind<Config<RestSchemaData>>(Component.Config)
+    .bind<ConfigContract<RestSchemaData>>(Component.Config)
     .to(RestConfig)
     .inSingletonScope();
   restAppContainer

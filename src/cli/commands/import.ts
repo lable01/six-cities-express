@@ -1,8 +1,8 @@
 import {
   CityService,
-  Command,
+  CommandContract,
   DatabaseClient,
-  Logger,
+  LoggerContract,
   OfferService,
 } from '../../shared/interface/index.js';
 import { UserService } from '../../shared/interface/user-service.js';
@@ -25,12 +25,12 @@ import { DEFAULT_DB_PORT, DEFAULT_USER_PASSWORD } from './command-const.js';
 import { getErrorMessage, getMongoURI } from '../../shared/helpers/index.js';
 import { TSVFileReader } from '../../shared/libs/file-reader/index.js';
 
-export class Import implements Command {
+export class Import implements CommandContract {
   private userService: UserService;
   private cityService: CityService;
   private offerService: OfferService;
   private databaseClient: DatabaseClient;
-  private readonly logger: Logger;
+  private readonly logger: LoggerContract;
   private salt: string;
 
   constructor() {

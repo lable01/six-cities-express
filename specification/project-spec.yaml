@@ -524,6 +524,14 @@ components:
           type: string
           example: Текст
 
+        rating:
+          type: number
+          example: 4
+
+        offerId:
+          type: string
+          example: 436763756R7
+
         authorId:
           type: string
-          example: over43423
+          example: 23123123333D

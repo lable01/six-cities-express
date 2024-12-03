@@ -1,4 +1,4 @@
-import { OfferGenerator } from '../../interface/index.js';
+import { OfferGeneratorContract } from '../../interface/index.js';
 import { MockServerData } from '../../types/index.js';
 import {
   generateRandomValue,
@@ -19,7 +19,7 @@ import dayjs from 'dayjs';
 import { generateRandomValueCoordinates } from '../../helpers/common.js';
 import { CityCoordinates } from '../../const/index.js';
 
-export class TSVOfferGenerator implements OfferGenerator {
+export class TSVOfferGenerator implements OfferGeneratorContract {
   private city: CityName = CityName.Paris;
   private type: HousingType = HousingType.Apartment;
   private goods: Goods[] = [];

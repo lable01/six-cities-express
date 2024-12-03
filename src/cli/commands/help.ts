@@ -1,7 +1,7 @@
-import { Command } from '../../shared/interface/index.js';
+import { CommandContract } from '../../shared/interface/index.js';
 import chalk from 'chalk';
 
-export class Help implements Command {
+export class Help implements CommandContract {
   public getName(): string {
     return '--help';
   }

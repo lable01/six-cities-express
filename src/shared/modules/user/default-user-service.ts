@@ -4,14 +4,14 @@ import { UserEntity } from './user-entity.js';
 import { CreateUserDto } from './dto/create-user-dto.js';
 import { inject, injectable } from 'inversify';
 import { Component } from '../../const/index.js';
-import { Logger } from '../../interface/index.js';
+import { LoggerContract } from '../../interface/index.js';
 import { populateFavorites } from './user-aggregation.js';
 import { UpdateUserDto } from './dto/update-user-dto.js';
 
 @injectable()
 export class DefaultUserService implements UserService {
   constructor(
-    @inject(Component.Logger) private readonly logger: Logger,
+    @inject(Component.Logger) private readonly logger: LoggerContract,
     @inject(Component.UserModel)
     private readonly userModel: types.ModelType<UserEntity>,
   ) {}

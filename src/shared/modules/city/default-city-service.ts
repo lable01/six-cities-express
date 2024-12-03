@@ -1,7 +1,7 @@
 import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
 
-import { CityService, Logger } from '../../interface/index.js';
+import { CityService, LoggerContract } from '../../interface/index.js';
 import { Component } from '../../const/index.js';
 import { CityEntity } from './city-entity.js';
 import { CreateCityDto } from './dto/create-city-dto.js';
@@ -9,7 +9,7 @@ import { CreateCityDto } from './dto/create-city-dto.js';
 @injectable()
 export class DefaultCityService implements CityService {
   constructor(
-    @inject(Component.Logger) private readonly logger: Logger,
+    @inject(Component.Logger) private readonly logger: LoggerContract,
     @inject(Component.CityModel)
     private readonly cityModel: types.ModelType<CityEntity>,
   ) {}

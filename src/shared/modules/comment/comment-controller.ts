@@ -1,13 +1,22 @@
 import { inject, injectable } from 'inversify';
 import { Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
-
 import { BaseController, HttpError } from '../../libs/rest/index.js';
+import { Component } from '../../const/index.js';
+import {
+  CommentService,
+  LoggerContract,
+  OfferService,
+} from '../../interface/index.js';
+import { HttpMethod } from '../../enum/index.js';
+import { CreateCommentRequest } from '../../types/index.js';
+import { fillDTO } from '../../helpers/common.js';
+import { CommentRdo } from './rdo/comment-rdo.js';
 
 @injectable()
 export default class CommentController extends BaseController {
   constructor(
-    @inject(Component.Logger) protected readonly logger: Logger,
+    @inject(Component.Logger) protected readonly logger: LoggerContract,
     @inject(Component.CommentService)
     private readonly commentService: CommentService,
     @inject(Component.OfferService) private readonly offerService: OfferService,

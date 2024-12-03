@@ -3,7 +3,7 @@ import { Response } from 'express';
 
 import { BaseController, HttpError } from '../../libs/rest/index.js';
 import { Component } from '../../const/index.js';
-import { Config, Logger } from '../../interface/index.js';
+import { ConfigContract, LoggerContract } from '../../interface/index.js';
 import { HttpMethod } from '../../enum/index.js';
 import { CreateUserRequest } from '../../types/create-user-request.js';
 import { UserService } from '../../interface/user-service.js';
@@ -15,10 +15,10 @@ import { UserRdo } from './rdo/user-rdo.js';
 @injectable()
 export class UserController extends BaseController {
   constructor(
-    @inject(Component.Logger) protected readonly logger: Logger,
+    @inject(Component.Logger) protected readonly logger: LoggerContract,
     @inject(Component.UserService) private readonly userService: UserService,
     @inject(Component.Config)
-    private readonly configService: Config<RestSchemaData>,
+    private readonly configService: ConfigContract<RestSchemaData>,
   ) {
     super(logger);
     this.logger.info('Register routes for UserController…');

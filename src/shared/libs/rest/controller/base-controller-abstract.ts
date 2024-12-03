@@ -1,17 +1,21 @@
 import { injectable } from 'inversify';
 import { StatusCodes } from 'http-status-codes';
 import { Response, Router } from 'express';
-import { Controller, Logger, Route } from '../../../interface/index.js';
+import {
+  ControllerContract,
+  LoggerContract,
+  RouteContract,
+} from '../../../interface/index.js';
 import expressAsyncHandler from 'express-async-handler';
 
 @injectable()
-export abstract class BaseController implements Controller {
+export abstract class BaseController implements ControllerContract {
   private readonly DEFAULT_CONTENT_TYPE = 'application/json';
   private readonly _router: Router;
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
-  constructor(protected readonly logger: Logger) {
+  constructor(protected readonly logger: LoggerContract) {
     this._router = Router();
   }
 
@@ -19,9 +23,16 @@ export abstract class BaseController implements Controller {
     return this._router;
   }
 
-  public addRoute(route: Route) {
+  public addRoute(route: RouteContract) {
     const wrapperAsyncHandler = expressAsyncHandler(route.handler.bind(this));
-    this._router[route.method](route.path, wrapperAsyncHandler);
+    const middlewareHandlers = route.middlewares?.map((item) =>
+      expressAsyncHandler(item.execute.bind(item)),
+    );
+    const allHandlers = middlewareHandlers
+      ? [...middlewareHandlers, wrapperAsyncHandler]
+      : wrapperAsyncHandler;
+
+    this._router[route.method](route.path, allHandlers);
     this.logger.info(
       `Route registered: ${route.method.toUpperCase()} ${route.path}`,
     );

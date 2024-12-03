@@ -1,6 +1,6 @@
 import { inject, injectable } from 'inversify';
 import { DocumentType, types } from '@typegoose/typegoose';
-import { Logger, OfferService } from '../../interface/index.js';
+import { LoggerContract, OfferService } from '../../interface/index.js';
 import {
   Component,
   DEFAULT_CITY_FAVORITES_OFFER_COUNT,
@@ -19,7 +19,7 @@ import { SortType } from '../../enum/index.js';
 @injectable()
 export class DefaultOfferService implements OfferService {
   constructor(
-    @inject(Component.Logger) private readonly logger: Logger,
+    @inject(Component.Logger) private readonly logger: LoggerContract,
     @inject(Component.OfferModel)
     private readonly offerModel: types.ModelType<OfferEntity>,
   ) {}
@@ -70,6 +70,10 @@ export class DefaultOfferService implements OfferService {
     offerId: string,
   ): Promise<DocumentType<OfferEntity> | null> {
     return this.offerModel.findByIdAndDelete(offerId).exec();
+  }
+
+  public async exists(documentId: string): Promise<boolean> {
+    return (await this.offerModel.exists({ _id: documentId })) !== null;
   }
 
   public async findByCityPremiumOfferId(

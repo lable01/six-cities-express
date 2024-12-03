@@ -10,6 +10,7 @@ import { FullOfferRdo } from './rdo/full-offer-dto.js';
 import { CreateOfferDto } from './dto/create-offer-dto.js';
 import { UpdateOfferDto } from './dto/update-offer-dto.js';
 import { ShortOfferRdo } from './rdo/short-offer-dto.js';
+import { ParamOfferId } from '../../types/index.js';
 
 @injectable()
 export class OfferController extends BaseController {
@@ -20,7 +21,7 @@ export class OfferController extends BaseController {
   ) {
     super(logger);
 
-    this.logger.info('Register routes for OfferController...');
+    this.logger.info('Register routes for OfferController');
 
     this.addRoute({
       path: '/',
@@ -73,9 +74,9 @@ export class OfferController extends BaseController {
   }
 
   public async findOne(req: Request, res: Response): Promise<void> {
-    const existsOffer = await this.offerService.findById(req.params.offerId);
+    const offer = await this.offerService.findById(req.params.offerId);
 
-    if (!existsOffer) {
+    if (!offer) {
       throw new HttpError(
         StatusCodes.NOT_FOUND,
         `Offer with id ${req.params.offerId} not found.`,
@@ -83,14 +84,18 @@ export class OfferController extends BaseController {
       );
     }
 
-    const responseData = fillDTO(FullOfferRdo, existsOffer);
+    const responseData = fillDTO(FullOfferRdo, offer);
     this.ok(res, responseData);
   }
 
-  public async delete(req: Request, res: Response): Promise<void> {
-    const result = await this.offerService.deleteById(req.params.offerId);
+  public async delete(
+    { params }: Request<ParamOfferId>,
+    res: Response,
+  ): Promise<void> {
+    const { offerId } = params;
+    const offer = await this.offerService.deleteById(offerId);
 
-    this.noContent(res, result);
+    this.noContent(res, offer);
   }
 
   public async update(req: Request, res: Response): Promise<void> {

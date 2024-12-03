@@ -12,7 +12,4 @@ export class UserRdo {
 
   @Expose()
   public typeUser: string;
-
-  @Expose()
-  public password: string;
 }

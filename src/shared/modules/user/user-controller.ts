@@ -1,7 +1,11 @@
 import { inject, injectable } from 'inversify';
 import { Response } from 'express';
 
-import { BaseController, HttpError } from '../../libs/rest/index.js';
+import {
+  BaseController,
+  HttpError,
+  ValidateDtoMiddleware,
+} from '../../libs/rest/index.js';
 import { Component } from '../../const/index.js';
 import { ConfigContract, LoggerContract } from '../../interface/index.js';
 import { HttpMethod } from '../../enum/index.js';
@@ -11,6 +15,8 @@ import { LoginUserRequest, RestSchemaData } from '../../types/index.js';
 import { StatusCodes } from 'http-status-codes';
 import { fillDTO } from '../../helpers/common.js';
 import { UserRdo } from './rdo/user-rdo.js';
+import { CreateUserDto } from './dto/create-user-dto.js';
+import { UpdateUserDto } from './dto/update-user-dto.js';
 
 @injectable()
 export class UserController extends BaseController {
@@ -27,11 +33,13 @@ export class UserController extends BaseController {
       path: '/register',
       method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [new ValidateDtoMiddleware(CreateUserDto)],
     });
     this.addRoute({
       path: '/login',
       method: HttpMethod.Post,
       handler: this.login,
+      middlewares: [new ValidateDtoMiddleware(UpdateUserDto)],
     });
   }
 

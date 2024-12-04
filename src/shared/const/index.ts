@@ -6,7 +6,7 @@ export {
   COMMENT_RATING,
   MOCK_COMMENTS_NUMBER,
   DEFAULT_COMMENTS_COUNT,
-} from './comment.js';
+} from './comment-const.js';
 
 export {
   OFFER_TITLE_LENGTH,
@@ -19,4 +19,6 @@ export {
   INC_COMMENT_COUNT_NUMBER,
   PHOTOS_LENGTH,
   MAX_PREMIUM_NUMBER,
-} from './offer.js';
+} from './offer-const.js';
+
+export { USER_NAME_LENGTH, USER_PASSWORD_LENGTH } from './user-const.js';

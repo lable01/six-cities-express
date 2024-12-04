@@ -12,3 +12,4 @@ export { RouteContract } from './route-contarct.js';
 export { ControllerContract } from './controller-contract.js';
 export { ExceptionFilter } from './exception-filter.js';
 export { MiddlewareContract } from './middleware-contract.js';
+export { DocumentExistsContract } from './document-exists-contract.js';

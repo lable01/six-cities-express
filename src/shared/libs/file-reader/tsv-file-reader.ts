@@ -1,6 +1,6 @@
 import { FileReaderContract } from '../../interface/index.js';
 import { CityData, OfferData, UserData } from '../../types/index.js';
-import { CityName, Goods, HousingType } from '../../enum/index.js';
+import { CityName, Goods, HousingType, TypeUser } from '../../enum/index.js';
 import EventEmitter from 'node:events';
 import { createReadStream } from 'node:fs';
 import { LocationData } from '../../types/location.js';
@@ -49,7 +49,7 @@ export class TSVFileReader extends EventEmitter implements FileReaderContract {
       maxAdults: this.parseInt(maxAdults),
       price: this.parseInt(price),
       goods: this.parseGoods(goods),
-      user: this.parseUser(name, email, avatarUrl, typeUser),
+      user: this.parseUser(name, email, avatarUrl, typeUser as TypeUser),
       location: this.parseLocationOffer(latitudeOffer, longitudeOffer),
     };
   }
@@ -99,7 +99,7 @@ export class TSVFileReader extends EventEmitter implements FileReaderContract {
     name: string,
     email: string,
     avatarUrl: string,
-    typeUser: string,
+    typeUser: TypeUser,
   ): UserData {
     return {
       name,

@@ -6,6 +6,7 @@ import {
 } from '@typegoose/typegoose';
 import { UserData } from '../../types/index.js';
 import { createSHA256 } from '../../helpers/index.js';
+import { TypeUser } from '../../enum/index.js';
 
 // eslint-disable-next-line @typescript-eslint/no-unsafe-declaration-merging
 export interface UserEntity extends defaultClasses.Base {}
@@ -29,7 +30,7 @@ export class UserEntity extends defaultClasses.TimeStamps implements UserData {
   public avatarUrl: string;
 
   @prop({ required: true })
-  public typeUser: string;
+  public typeUser: TypeUser;
 
   @prop({ required: true, default: '' })
   private password?: string;

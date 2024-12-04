@@ -4,6 +4,7 @@ import { StatusCodes } from 'http-status-codes';
 import {
   BaseController,
   HttpError,
+  ValidateDtoMiddleware,
   ValidateObjectIdMiddleware,
 } from '../../libs/rest/index.js';
 import { Component } from '../../const/index.js';
@@ -43,6 +44,7 @@ export class OfferController extends BaseController {
       path: '/',
       method: HttpMethod.Post,
       handler: this.create,
+      middlewares: [new ValidateDtoMiddleware(CreateOfferDto)],
     });
     this.addRoute({
       path: '/:offerId',
@@ -60,7 +62,10 @@ export class OfferController extends BaseController {
       path: '/:offerId',
       method: HttpMethod.Patch,
       handler: this.update,
-      middlewares: [new ValidateObjectIdMiddleware('offerId')],
+      middlewares: [
+        new ValidateObjectIdMiddleware('offerId'),
+        new ValidateDtoMiddleware(UpdateOfferDto),
+      ],
     });
     this.addRoute({
       path: '/:offerId/comments',

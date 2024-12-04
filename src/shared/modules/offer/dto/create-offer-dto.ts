@@ -1,7 +1,6 @@
 import { Goods, HousingType } from '../../../enum/index.js';
 import {
   ArrayMaxSize,
-  ArrayMinSize,
   ArrayUnique,
   IsArray,
   IsBoolean,
@@ -46,7 +45,6 @@ export class CreateOfferDto {
   public previewImage!: string;
 
   @IsArray()
-  @ArrayMinSize(PHOTOS_LENGTH)
   @ArrayMaxSize(PHOTOS_LENGTH)
   public images!: string[];
 

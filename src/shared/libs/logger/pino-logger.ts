@@ -10,7 +10,7 @@ export class PinoLogger implements LoggerContract {
 
   constructor() {
     const modulePath = getCurrentModuleDirectoryPath();
-    const logFilePath = 'logs/rest.logs';
+    const logFilePath = 'logs/rest.log';
     const destination = resolve(modulePath, '../../../', logFilePath);
 
     const multiTransport = transport({
